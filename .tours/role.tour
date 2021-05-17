@@ -1,0 +1,61 @@
+{
+  "$schema": "https://aka.ms/codetour-schema",
+  "title": "02 Role",
+  "steps": [
+    {
+      "file": "src/components/atoms/ImageLink.tsx",
+      "description": "## ロールを設定する\n`ImageLink` は画像リンクのコンポーネントです。  \nその実体は `TouchableWithoutFeedback` です。  \nこれ自体がリンクであるか、スクリーンリーダーはわかりません。\n\nロールを加えて、これがリンクの役割を持つことを示します。  \n`accessibilityRole=\"link\"` を設定しました。  \nスクリーンリーダーは、このコンポーネントを読み上げた後に「リンク」であることを説明してくれます。",
+      "line": 20
+    },
+    {
+      "file": "src/components/pages/KihonExample.tsx",
+      "description": "## ナビゲート向けのロール\nVoiceOver と Talkback の特殊な操作で、特定の要素までフォーカスを飛ばすことができます。  \n例えば、単語や行ごと、見出しごと、操作可能なコンポーネントごと、です。  \n\n一部のロールは、この機能に対応しています。  \n`accessibilityRole=\"header\"` の要素は、「見出し」として扱われます。\n\nどの要素ごとに飛ぶかの設定は、スクリーンリーダーにより異なります。  \nVoiceOver の場合は 2 本の指で上と下を同時にスワイプ、Android の場合は 3 本の指で左か右にスワイプすると設定できます。\n（フォーカス移動はどちらも上下スワイプ）",
+      "line": 17,
+      "selection": {
+        "start": {
+          "line": 17,
+          "character": 1
+        },
+        "end": {
+          "line": 18,
+          "character": 1
+        }
+      }
+    },
+    {
+      "file": "src/components/pages/KihonExample.tsx",
+      "description": "## インラインの注意\n01.基本の項目でも説明しましたが、`accessible` を指定した要素の子は「グループ化」されるので、設定が無視されます。  \nまた、`<Text>` はデフォルトで `accessible` です。\n\nこのケースですと、accessible な `<Text>` にネストされた `<Text>` の設定ロールが無視されるので、読み上げはされるものの `link` として認識されません。\n",
+      "line": 28,
+      "selection": {
+        "start": {
+          "line": 24,
+          "character": 13
+        },
+        "end": {
+          "line": 24,
+          "character": 30
+        }
+      }
+    },
+    {
+      "file": "android/app/src/main/res/values-ja/strings.xml",
+      "description": "## ロールの読み上げ注意(Android)\nAndroid はロールを日本語で読み上げません。\n`android/app/src/main/res/values-ja/string.xml` の `<strings>` で上書きします。  \n[上書きに使ったファイル](https://github.com/grgr-dkrk/react-native-japanese-accessibility-role/blob/master/android/app/src/main/res/values-ja/strings.xml)",
+      "line": 3
+    },
+    {
+      "file": "src/components/pages/KihonExample.tsx",
+      "description": "## ロールとラベルの注意(Android)\n通常は、テキストからロールの順番で読み上げられます。  \nしかし `accessibilityRole` が設定されている場合は、TalkBack のバグでロールが先に読み上げられます。  \nつまり  `accessibilityRole` と `accessibilityLabel` はセットで指定しないと、読み上げ順がおかしくなってしまいます。",
+      "line": 72,
+      "selection": {
+        "start": {
+          "line": 71,
+          "character": 1
+        },
+        "end": {
+          "line": 73,
+          "character": 1
+        }
+      }
+    }
+  ]
+}

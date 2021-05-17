@@ -1,0 +1,56 @@
+{
+  "$schema": "https://aka.ms/codetour-schema",
+  "title": "03 State",
+  "steps": [
+    {
+      "file": "src/components/pages/ListExample.tsx",
+      "description": "## 状態を伝える\n\nコンポーネントが今どのような状態にあるのかを、`accessibilityState` props で指定できます。 \n\n\n`disabled(無効か)`, `selected(選択済みか)`, `checked(チェック済みか)`, `busy(ビジー)`, `expanded(展開済みか)`  \nから設定します。",
+      "line": 23,
+      "selection": {
+        "start": {
+          "line": 21,
+          "character": 1
+        },
+        "end": {
+          "line": 24,
+          "character": 1
+        }
+      }
+    },
+    {
+      "file": "src/components/atoms/AlertMessage.tsx",
+      "description": "## 更新後に読み上げる\n\n`accessibilityState` 以外にも、状態を伝える props があります。  \n`accessibilityLiveRegion` を設定すると、テキストが更新がされた時に自動で読み上げることができます。\n\n`assertive` は、他の読み上げに割り込んで読み上げられます。\n`polite` は、読み上げてもいい時に読み上げられます。基本的にはこちらを使います。\n\nAndroid でしか対応していません。（iOS の場合は次のツアーへ）",
+      "line": 10
+    },
+    {
+      "file": "src/components/pages/SearchExample.tsx",
+      "description": "## 更新後に読み上げる（iOS）\n\niOS は `accessibilityLiveRegion` に対応していないので、`AccessibilityInfo.announceForAccessibility()` を使って読み上げることにしています。\n",
+      "line": 34,
+      "selection": {
+        "start": {
+          "line": 35,
+          "character": 1
+        },
+        "end": {
+          "line": 38,
+          "character": 1
+        }
+      }
+    },
+    {
+      "file": "src/components/pages/ListExample.tsx",
+      "description": "## 注意\n`accessibilityState` 自体は UI ライブラリで使うことになると思うので、普段は気にしなくていいのですが、組み込みコンポーネントがサポートできていないこともあります。  \n\n例えば View の disabled は Android 側のコードで enabled に切り替わることがあります。  \nそれを継承している Touchable 系コンポーネントが `accessibilityState` で disabled を設定していなかったので、スクリーンリーダーから操作できてしまう不具合がありました。\n（0.64時点）\n\nhttps://github.com/facebook/react-native/issues/30840",
+      "line": 24,
+      "selection": {
+        "start": {
+          "line": 24,
+          "character": 1
+        },
+        "end": {
+          "line": 25,
+          "character": 1
+        }
+      }
+    }
+  ]
+}

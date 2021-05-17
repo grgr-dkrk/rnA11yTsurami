@@ -1,0 +1,65 @@
+{
+  "$schema": "https://aka.ms/codetour-schema",
+  "title": "01 Kihon",
+  "steps": [
+    {
+      "file": "App.tsx",
+      "description": "## VoiceOver, TalkBack の基本操作\n\nVoiceOver は iOS の、 TalkBack は Android の基本的なスクリーンリーダーです。  \nスクリーンリーダーは、音声読み上げが必要なユーザーにとっての操作を補助するツールです。\n\n| 操作                             | VoiceOver                                                                        | TalkBack                     | \n| -------------------------------- | -------------------------------------------------------------------------------- | ---------------------------- | \n| 起動と終了                       | ホームボタンまたはサイドボタン 3 回押し                                                            | 音量 + と - ボタン同時に数秒 | \n| フォーカスを移動                 | なぞる                                                                                                         | \n| （前後の項目に）フォーカスを移動 | 左または右にスワイプして離す                                                                                   | \n| タップ                           | フォーカスを合わせた状態でダブルタップ<br>（ダブルタップするならトリプルタップ）                               | \n| スクロール                       | 2 本の指でスワイプ                                                                                             | ",
+      "line": 1
+    },
+    {
+      "file": "src/components/pages/KihonExample.tsx",
+      "description": "## フォーカス可能にする\nprops に `accessible={true}` を設定したコンポーネントは、フォーカス可能になります。  \nReact Native は `<Text>` コンポーネントがデフォルトでフォーカス可能です。  \n\n`<Image>` コンポーネントは、フォーカス不可能です。  \nこのままではフォーカスできないので、props に `accessible` を渡してフォーカス可能であることを示します。  \nその後、ラベルを設定します（次のステップへ）\n",
+      "selection": {
+        "start": {
+          "line": 50,
+          "character": 1
+        },
+        "end": {
+          "line": 55,
+          "character": 1
+        }
+      }
+    },
+    {
+      "file": "src/components/pages/KihonExample.tsx",
+      "description": "## ラベルを設定する\n「替え玉無料」と書かれた画像が表示される箇所ですが、その前後に同等の内容のテキストがありません。  \nつまり視覚的な情報がないと「替え玉無料」なのかがわかりません。  \nそこで `<Image>` の `accessibilityLabel` に `\"替え玉無料\"` を指定します。\n\nこれで、スクリーンリーダーが画像にフォーカスした時「替え玉無料」と読みあげるようになります。",
+      "line": 54
+    },
+    {
+      "file": "src/components/pages/KihonExample.tsx",
+      "description": "## accessible によるグループ化\n`accessible` なコンポーネントは、子要素をグループ化します。  \n子要素ではなく、親要素にフォーカスした時に、まとめて読み上げられるようになります。\n\n「お得な情報3」セクションは、親の View が `accessible` になっています。  \nそのため、子にあるテキストや `accessibilityLabel` をまとめて読み上げます。\n\n\n",
+      "line": 69,
+      "selection": {
+        "start": {
+          "line": 58,
+          "character": 1
+        },
+        "end": {
+          "line": 70,
+          "character": 1
+        }
+      }
+    },
+    {
+      "file": "src/components/pages/SettingsExample.tsx",
+      "description": "## 冗長なラベルとヒント\n\nタイトルと説明を含めて、1 つのボタンとして扱われるコンポーネントがあります。  \nしかし、タイトルや説明が非常に長いと、聞き終わるまでに時間がかかります。  \nかと言ってフォーカスを分けると、フォーカス移動の負担がかかります。\n\n`accessibilityHint` を設定して、設定を切り替えた時のリアクションを分けて書くと、スクリーンリーダーでも分けて読み上げられます。\nまた、そもそも情報量が多すぎることも考えられるので、コンテンツの設計を見直す手もあります。",
+      "line": 43,
+      "selection": {
+        "start": {
+          "line": 33,
+          "character": 1
+        },
+        "end": {
+          "line": 44,
+          "character": 1
+        }
+      }
+    },
+    {
+      "file": "src/components/pages/KihonExample.tsx",
+      "description": "## accessible の注意\n`<Text>` はデフォルトで accessible です。  \niOS の場合は、空文字もフォーカスしてしまいます。  \n空文字が入るかもしれない場合は、`accessible={false}` を設定できるようにしておくか、コンポーネントを非表示にします。\n",
+      "line": 88
+    }
+  ]
+}
